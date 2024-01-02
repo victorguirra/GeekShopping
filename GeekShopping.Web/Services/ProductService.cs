@@ -9,9 +9,9 @@ namespace GeekShopping.Web.Services
         private readonly HttpClient _client;
         public const string _basePath = "api/v1/product";
 
-        public ProductService()
+        public ProductService(HttpClient client)
         {
-            _client = new HttpClient();
+            _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
         public async Task<IEnumerable<ProductModel>> FindAll()
