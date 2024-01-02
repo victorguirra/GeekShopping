@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qWHKHi9uMMphZW8bvK+59N7TcL5NRkyWqtC0/eEsEG3X6wPKYcsM4rO/rqZwGoViODsdatZdloUcTv5aIp5U0Q==",
+  "dgSpecHash": "91LGcKXuhyveQniTeztvKF1M8TezylOsjTTY4wxY00z5WOqpziQ3WnEafo1G1MtFH5MIkvFnnUz7kXsOljXaQQ==",
   "success": true,
   "projectFilePath": "C:\\dev\\csharp\\GeekShopping\\GeekShopping.ProductAPI\\GeekShopping.ProductAPI.csproj",
   "expectedPackageFiles": [
