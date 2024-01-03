@@ -27,6 +27,7 @@ IIdentityServerBuilder identityBuilder = builder.Services.AddIdentityServer(opti
     options.Events.RaiseSuccessEvents = true;
 })
     .AddInMemoryIdentityResources(IdentityConfiguration.IdentityResources)
+    .AddInMemoryApiScopes(IdentityConfiguration.ApiScopes)
     .AddInMemoryClients(IdentityConfiguration.Clients)
     .AddAspNetIdentity<ApplicationUser>();
 
