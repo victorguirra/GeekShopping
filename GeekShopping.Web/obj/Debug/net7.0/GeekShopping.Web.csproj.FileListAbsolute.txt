@@ -29,3 +29,13 @@ C:\dev\csharp\GeekShopping\GeekShopping.Web\obj\Debug\net7.0\refint\GeekShopping
 C:\dev\csharp\GeekShopping\GeekShopping.Web\obj\Debug\net7.0\GeekShopping.Web.pdb
 C:\dev\csharp\GeekShopping\GeekShopping.Web\obj\Debug\net7.0\GeekShopping.Web.genruntimeconfig.cache
 C:\dev\csharp\GeekShopping\GeekShopping.Web\obj\Debug\net7.0\ref\GeekShopping.Web.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\dev\csharp\GeekShopping\GeekShopping.Web\obj\Debug\net7.0\GeekShopping.Web.csproj.CopyComplete
