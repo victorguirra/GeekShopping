@@ -1,6 +1,8 @@
 ﻿using GeekShopping.ProductAPI.Data.ValueObjects;
 using GeekShopping.ProductAPI.Models;
 using GeekShopping.ProductAPI.Repository.Interfaces;
+using GeekShopping.ProductAPI.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeekShopping.ProductAPI.Controllers
@@ -17,6 +19,7 @@ namespace GeekShopping.ProductAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
             IEnumerable<ProductVO> products = await _repository.FindAll();
@@ -24,7 +27,8 @@ namespace GeekShopping.ProductAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductVO>> Get(Int64 id)
+        [Authorize]
+        public async Task<ActionResult<ProductVO>> FindById(Int64 id)
         {
             ProductVO productVO = await _repository.FindById(id);
 
@@ -35,6 +39,7 @@ namespace GeekShopping.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ProductVO>> Create([FromBody] ProductVO productVO)
         {
             if (productVO is null)
@@ -45,6 +50,7 @@ namespace GeekShopping.ProductAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<ProductVO>> Update([FromBody] ProductVO productVO)
         {
             if (productVO is null)
@@ -55,6 +61,7 @@ namespace GeekShopping.ProductAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult> Delete(Int64 id)
         {
             bool deleted = await _repository.Delete(id);
