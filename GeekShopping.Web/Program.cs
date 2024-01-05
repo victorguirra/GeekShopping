@@ -4,9 +4,13 @@ using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add HttpClient service.
+// Add HttpClient services.
 builder.Services.AddHttpClient<IProductService, ProductService>(c =>
     c.BaseAddress = new Uri(builder.Configuration["ServiceURLS:ProductAPI"])
+);
+
+builder.Services.AddHttpClient<ICartService, CartService>(c =>
+    c.BaseAddress = new Uri(builder.Configuration["ServiceURLS:CartAPI"])
 );
 
 builder.Services.AddAuthentication(options =>
