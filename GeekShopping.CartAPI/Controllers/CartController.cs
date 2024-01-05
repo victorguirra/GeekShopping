@@ -16,9 +16,9 @@ namespace GeekShopping.CartAPI.Controllers
         }
 
         [HttpGet("find-cart/{id}")]
-        public async Task<ActionResult<CartVO>> FindById(string userId)
+        public async Task<ActionResult<CartVO>> FindById(string id)
         {
-            CartVO cart = await _repository.FindCartByUserId(userId);
+            CartVO cart = await _repository.FindCartByUserId(id);
 
             if (cart is null)
                 return NotFound();
@@ -26,8 +26,8 @@ namespace GeekShopping.CartAPI.Controllers
             return Ok(cart);
         }
 
-        [HttpPost("add-cart/{id}")]
-        public async Task<ActionResult<CartVO>> AddCart(CartVO cartVO)
+        [HttpPost("add-cart")]
+        public async Task<ActionResult<CartVO>> AddCart([FromBody] CartVO cartVO)
         {
             CartVO createdCart = await _repository.SaveOrUpdate(cartVO);
 
@@ -37,8 +37,8 @@ namespace GeekShopping.CartAPI.Controllers
             return Ok(createdCart);
         }
 
-        [HttpPut("update-cart/{id}")]
-        public async Task<ActionResult<CartVO>> UpdateCart(CartVO cartVO)
+        [HttpPut("update-cart")]
+        public async Task<ActionResult<CartVO>> UpdateCart([FromBody] CartVO cartVO)
         {
             CartVO updatedCart = await _repository.SaveOrUpdate(cartVO);
 
