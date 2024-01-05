@@ -20,7 +20,16 @@ namespace GeekShopping.CartAPI.Repository
 
         public async Task<CartVO> FindCartByUserId(string userId)
         {
-            throw new NotImplementedException();
+            CartHeader cartHeader = await _context.CartHeaders.FirstOrDefaultAsync(x => x.UserId == userId);
+            IEnumerable<CartDetail> cartDetails =  _context.CartDetails
+                .Where(x => x.CartHeaderId == cartHeader.Id)
+                .Include(c => c.Product);
+
+            Cart cart = new Cart();
+            cart.CartHeader = cartHeader;
+            cart.CartDetails = cartDetails;
+
+            return _mapper.Map<CartVO>(cart);
         }
 
         public async Task<CartVO> SaveOrUpdate(CartVO cartVO)
