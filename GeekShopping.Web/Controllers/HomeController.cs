@@ -19,7 +19,7 @@ namespace GeekShopping.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<ProductModel> products = await _productService.FindAll(string.Empty);
+            IEnumerable<ProductViewModel> products = await _productService.FindAll(string.Empty);
             return View(products);
         }
 
@@ -28,7 +28,7 @@ namespace GeekShopping.Web.Controllers
         {
             string token = await HttpContext.GetTokenAsync("access_token");
 
-            ProductModel product = await _productService.FindById(id, token);
+            ProductViewModel product = await _productService.FindById(id, token);
             return View(product);
         }
 
