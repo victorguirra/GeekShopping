@@ -135,7 +135,20 @@ namespace GeekShopping.CartAPI.Repository
 
         public async Task<bool> ClearCart(string userId)
         {
-            throw new NotImplementedException();
+            CartHeader cartHeader = await _context.CartHeaders.FirstOrDefaultAsync(x => x.UserId == userId);
+
+            if(cartHeader is not null)
+            {
+                IQueryable<CartDetail> cartDetailsToRemove = _context.CartDetails.Where(x => x.CartHeaderId == cartHeader.Id);
+
+                _context.CartDetails.RemoveRange(cartDetailsToRemove);
+                _context.CartHeaders.Remove(cartHeader);
+
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
         }
     }
 }
