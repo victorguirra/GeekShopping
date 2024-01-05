@@ -11,10 +11,12 @@ namespace GeekShopping.Web.Controllers
     {
 
         private readonly IProductService _productService;
+        private readonly ICartService _cartService;
 
-        public HomeController(IProductService productService)
+        public HomeController(IProductService productService, ICartService cartService)
         {
             _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _cartService = cartService ?? throw new ArgumentNullException(nameof(cartService));
         }
 
         public async Task<IActionResult> Index()
@@ -30,6 +32,33 @@ namespace GeekShopping.Web.Controllers
 
             ProductViewModel product = await _productService.FindById(id, token);
             return View(product);
+        }
+
+        [HttpPost]
+        [ActionName("Details")]
+        [Authorize]
+        public async Task<IActionResult> DetailsPost(ProductViewModel productModel)
+        {
+            string token = await HttpContext.GetTokenAsync("access_token");
+
+            CartHeaderViewModel cartHeaderViewModel = new CartHeaderViewModel();
+            cartHeaderViewModel.UserId = User.Claims.Where(x => x.Type == "sub")?.FirstOrDefault()?.Value;
+
+            CartDetailViewModel cartDetailViewModel = new CartDetailViewModel();
+            cartDetailViewModel.Count = productModel.Count;
+            cartDetailViewModel.ProductId = productModel.Id;
+            cartDetailViewModel.Product = await _productService.FindById(productModel.Id, token);
+
+            CartViewModel cartViewModel = new CartViewModel();
+            cartViewModel.CartHeader = cartHeaderViewModel;
+            cartViewModel.CartDetails = new List<CartDetailViewModel>() { cartDetailViewModel };
+
+            CartViewModel response = await _cartService.AddItemToCart(cartViewModel, token);
+
+            if (response is not null)
+                return RedirectToAction(nameof(Index));
+
+            return View(productModel);
         }
 
         public IActionResult Privacy()
