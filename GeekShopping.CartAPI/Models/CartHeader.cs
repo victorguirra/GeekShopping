@@ -10,6 +10,6 @@ namespace GeekShopping.CartAPI.Models
         public string UserId { get; set; }
         
         [Column("COUPON_CODE")]
-        public string CouponCode { get; set; }
+        public string? CouponCode { get; set; }
     }
 }

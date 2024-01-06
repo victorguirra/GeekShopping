@@ -27,7 +27,7 @@ namespace GeekShopping.CartAPI.Controllers
         }
 
         [HttpPost("add-cart")]
-        public async Task<ActionResult<CartVO>> AddCart([FromBody] CartVO cartVO)
+        public async Task<ActionResult<CartVO>> AddCart(CartVO cartVO)
         {
             CartVO createdCart = await _repository.SaveOrUpdate(cartVO);
 
@@ -38,7 +38,7 @@ namespace GeekShopping.CartAPI.Controllers
         }
 
         [HttpPut("update-cart")]
-        public async Task<ActionResult<CartVO>> UpdateCart([FromBody] CartVO cartVO)
+        public async Task<ActionResult<CartVO>> UpdateCart(CartVO cartVO)
         {
             CartVO updatedCart = await _repository.SaveOrUpdate(cartVO);
 
