@@ -53,7 +53,7 @@ namespace GeekShopping.Web.Services
 
         public async Task<bool> RemoveFromCart(Int64 cartId, string token)
         {
-            string path = $"{_basePath}/delete-cart/{cartId}";
+            string path = $"{_basePath}/remove-cart/{cartId}";
 
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             HttpResponseMessage response = await _client.DeleteAsync(path);
