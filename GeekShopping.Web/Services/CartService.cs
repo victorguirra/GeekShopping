@@ -8,7 +8,9 @@ namespace GeekShopping.Web.Services
     public class CartService : ICartService
     {
         private readonly HttpClient _client;
-        public const string _basePath = "api/v1/cart";
+        
+        private const string _basePath = "api/v1/cart";
+        private const string _defaultExceptionMessage = "Something went wrong when calling API";
 
         public CartService(HttpClient client)
         {
@@ -35,7 +37,7 @@ namespace GeekShopping.Web.Services
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<CartViewModel>();
 
-            throw new Exception("Something went wrong when calling API");
+            throw new Exception(_defaultExceptionMessage);
         }
 
         public async Task<CartViewModel> UpdateCart(CartViewModel cart, string token)
@@ -48,7 +50,7 @@ namespace GeekShopping.Web.Services
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<CartViewModel>();
 
-            throw new Exception("Something went wrong when calling API");
+            throw new Exception(_defaultExceptionMessage);
         }
 
         public async Task<bool> RemoveFromCart(Int64 cartId, string token)
@@ -61,19 +63,33 @@ namespace GeekShopping.Web.Services
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<bool>();
 
-            throw new Exception("Something went wrong when calling API");
-
-            throw new NotImplementedException();
+            throw new Exception(_defaultExceptionMessage);
         }
 
-        public async Task<bool> ApplyCoupon(CartViewModel cart, string couponCode, string token)
+        public async Task<bool> ApplyCoupon(CartViewModel cart, string token)
         {
-            throw new NotImplementedException();
+            string path = $"{_basePath}/apply-coupon";
+            
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await _client.PostAsJson(path, cart);
+
+            if (response.IsSuccessStatusCode)
+                return await response.ReadContentAs<bool>();
+
+            throw new Exception(_defaultExceptionMessage);
         }
 
         public async Task<bool> RemoveCoupon(string userId, string token)
         {
-            throw new NotImplementedException();
+            string path = $"{_basePath}/remove-coupon/{userId}";
+
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await _client.DeleteAsync(path);
+
+            if (response.IsSuccessStatusCode)
+                return await response.ReadContentAs<bool>();
+
+            throw new Exception(_defaultExceptionMessage);
         }
 
         public async Task<bool> ClearCart(string userId, string token)
