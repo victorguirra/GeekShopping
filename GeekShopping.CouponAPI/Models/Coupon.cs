@@ -14,6 +14,6 @@ namespace GeekShopping.CouponAPI.Models
 
         [Column("DISCOUNT_AMOUNT")]
         [Required]
-        public decimal DiscountAmout { get; set; }
+        public decimal DiscountAmount { get; set; }
     }
 }

@@ -19,14 +19,14 @@ namespace GeekShopping.CouponAPI.Models.Context
             {
                 Id = 1,
                 CouponCode = "GUIRRA_2024_10",
-                DiscountAmout = 10
+                DiscountAmount = 10
             });
             
             modelBuilder.Entity<Coupon>().HasData(new Coupon()
             {
                 Id = 2,
                 CouponCode = "GUIRRA_2024_15",
-                DiscountAmout = 15
+                DiscountAmount = 15
             });
         }
     }
