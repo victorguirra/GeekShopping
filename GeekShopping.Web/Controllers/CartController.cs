@@ -65,6 +65,13 @@ namespace GeekShopping.Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Checkout()
+        {
+            CartViewModel cartViewModel = await FindUserCart();
+            return View(cartViewModel);
+        }
+
         private async Task<CartViewModel> FindUserCart()
         {
             string userId = User.Claims.Where(x => x.Type == "sub")?.FirstOrDefault()?.Value;
